@@ -30,16 +30,34 @@ int32_t Q_create(queue *container, ptrdiff_t offset){
     return 0;
 }
 
-int32_t Q_pop(queue container, void **holder){
+int32_t Q_pop(queue container){
+    if(container == NULL){
+        return 1;
+    }
     
+    if(container->size == 1){
+        container->next = NULL;
+        container->last = NULL;
+    }else{
+        container->next = container->next->next;
+    }
+    container->size--;
+    return 0;
 }
 
 int32_t Q_peek(queue container, void **holder){
-    
+    if(container == NULL){
+        return 1;
+    }
+    if(*holder != NULL){
+        return 2;
+    }
+    *holder = (void*)(((int8_t*)container->next)-container->offset);
+    return 0;
 }
 
 int32_t Q_enqueue(queue container, void *node){
-    struct Q_anchor *anchor = (struct Q_anchor*)((int8_t*)node)+container->offset;
+    struct Q_anchor *anchor = (struct Q_anchor*)((int8_t*)node+container->offset);
     if(anchor->next != NULL){
         return 1;
     }

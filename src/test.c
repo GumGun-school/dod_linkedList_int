@@ -1,5 +1,7 @@
 #include "lib.h"
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 struct juego{
     char nombre[20];
@@ -15,20 +17,45 @@ int main(){
     
     struct juego *pacman = malloc(sizeof(struct juego));
     *pacman = (struct juego){
-        .nombre = "pacman",
+        //.nombre = ,
         .year = 1950,
         .rating = 'a',
     };
+    strcpy(pacman->nombre, "pacman");
     
     struct juego *battleCity = malloc(sizeof(struct juego));
-    *pacman = (struct juego){
-        .nombre = "battleCity",
+    *battleCity = (struct juego){
+        //.nombre = "battleCity",
         .year = 1961,
         .rating = 'a',
     };
+    strcpy(battleCity->nombre,"battleCity");
+    
     
     Q_enqueue(estructura_videoJuegos, pacman);
     Q_enqueue(estructura_videoJuegos, battleCity);
     
-    debug_print(estructura_videoJuegos);
+    struct juego *primero = NULL;
+    int32_t ret=0;
+    if((ret = Q_peek(estructura_videoJuegos, (void**)&primero)) != 0){
+        printf("error %d\n", ret);
+        exit(1);
+    }
+    Q_pop(estructura_videoJuegos);
+    printf("%s\n", primero->nombre);
+    printf("%d\n", primero->year);
+    
+    struct juego *segundo = NULL;
+    ret=0;
+    if((ret = Q_peek(estructura_videoJuegos, (void**)&segundo)) != 0){
+        printf("error %d\n", ret);
+        exit(1);
+    }
+    printf("%s\n", segundo->nombre);
+    printf("%d\n", segundo->year);
+    
+    free(segundo);
+    free(primero);
+    
+    //debug_print(estructura_videoJuegos);
 }
