@@ -11,6 +11,7 @@ struct Q_container{
 };
 
 //statics
+
 inline static Q_anchor* s_startToAnchor(queue container, void *node);
 inline static Q_anchor* s_anchorToHead(queue container, void *node);
 

@@ -25,7 +25,6 @@ int main(){
     
     struct juego *pacman = malloc(sizeof(struct juego));
     *pacman = (struct juego){
-        //.nombre = ,
         .year = 1950,
         .rating = 'a',
     };
@@ -33,7 +32,6 @@ int main(){
     
     struct juego *battleCity = malloc(sizeof(struct juego));
     *battleCity = (struct juego){
-        //.nombre = "battleCity",
         .year = 1961,
         .rating = 'a',
     };

@@ -1,5 +1,5 @@
-#ifndef libreria
-#define libreria
+#ifndef libreria_queue
+#define libreria_queue
 
 #include <stdint.h>
 #include <stddef.h>
